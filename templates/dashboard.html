@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SmartHire 360 Dashboard</title>
+
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- ================================================= -->
+    <!-- SIDEBAR -->
+    <!-- ================================================= -->
+
+    <aside class="sidebar">
+
+        <div>
+
+            <h2>
+                SmartHire 360
+            </h2>
+
+            <ul>
+
+                <li onclick="scrollToSection('dashboard')">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </li>
+
+                <li onclick="scrollToSection('resume-screening')">
+                    <i class="fa-solid fa-file-waveform"></i>
+                    Resume Screening
+                </li>
+
+                <li onclick="scrollToSection('resume-matching')">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Resume Matching
+                </li>
+
+                <li onclick="scrollToSection('candidate-ranking')">
+                    <i class="fa-solid fa-ranking-star"></i>
+                    Candidate Ranking
+                </li>
+
+                <li onclick="scrollToSection('salary-prediction')">
+                    <i class="fa-solid fa-money-bill-trend-up"></i>
+                    Salary Prediction
+                </li>
+
+                <li onclick="scrollToSection('retention-analysis')">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Retention Analysis
+                </li>
+
+                <li onclick="scrollToSection('hr-analytics')">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    HR Analytics
+                </li>
+
+                <li onclick="scrollToSection('reports')">
+                    <i class="fa-solid fa-file-lines"></i>
+                    Reports
+                </li>
+
+                <li>
+                    <a href="/" style="color:white; text-decoration:none; width:100%; display:block;">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        Logout
+
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </aside>
+
+    <!-- ================================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ================================================= -->
+
+    <main class="main-content">
+
+        <!-- ================================================= -->
+        <!-- DASHBOARD -->
+        <!-- ================================================= -->
+
+        <section id="dashboard">
+
+            <h1>
+                AI Recruitment Dashboard
+            </h1>
+
+            <!-- ANALYTICS -->
+
+            <div class="analytics-cards">
+
+                <div class="analytics-card">
+
+                    <h2>10K+</h2>
+
+                    <p>
+                        Candidates Screened
+                    </p>
+
+                </div>
+
+                <div class="analytics-card">
+
+                    <h2>95%</h2>
+
+                    <p>
+                        AI Accuracy
+                    </p>
+
+                </div>
+
+                <div class="analytics-card">
+
+                    <h2>85%</h2>
+
+                    <p>
+                        Retention Rate
+                    </p>
+
+                </div>
+
+                <div class="analytics-card">
+
+                    <h2>50+</h2>
+
+                    <p>
+                        Companies Connected
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================= -->
+        <!-- RESUME SCREENING -->
+        <!-- ================================================= -->
+
+        <section id="resume-screening">
+
+            <div class="upload-card">
+
+                <h2 style="margin-bottom:20px;">
+
+                    Resume Screening
+
+                </h2>
+
+                <form action="/upload_resume"
+                      method="POST"
+                      enctype="multipart/form-data">
+
+                    <input type="file"
+                           name="resume"
+                           accept=".pdf,.txt"
+                           required>
+
+                    <button type="submit">
+
+                        Upload Resume
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================= -->
+        <!-- RESUME MATCHING -->
+        <!-- ================================================= -->
+
+        <section id="resume-matching">
+
+            <h1 style="font-size:28px; margin-bottom:25px;">
+
+                Resume Matching
+
+            </h1>
+
+            <div class="results-grid">
+
+                <div class="result-card">
+
+                    <h3>
+                        Match Score
+                    </h3>
+
+                    <p>
+                        {{ match_score if match_score else "--" }}
+                    </p>
+
+                </div>
+
+                <div class="result-card">
+
+                    <h3>
+                        Skills
+                    </h3>
+
+                    <p>
+                        {{ skills if skills else "--" }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================= -->
+        <!-- CANDIDATE RANKING -->
+        <!-- ================================================= -->
+
+        <section id="candidate-ranking">
+
+            <h1 style="font-size:28px; margin-bottom:25px;">
+
+                Candidate Ranking
+
+            </h1>
+
+            <div class="results-grid">
+
+                <div class="result-card">
+
+                    <h3>
+                        Candidate Name
+                    </h3>
+
+                    <p>
+                        {{ candidate_name if candidate_name else "--" }}
+                    </p>
+
+                </div>
+
+                <div class="result-card">
+
+                    <h3>
+                        Ranking
+                    </h3>
+
+                    <p>
+                        {{ ranking if ranking else "--" }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SALARY PREDICTION -->
+        <!-- ================================================= -->
+
+        <section id="salary-prediction">
+
+            <h1 style="font-size:28px; margin-bottom:25px;">
+
+                Salary Prediction
+
+            </h1>
+
+            <div class="results-grid">
+
+                <div class="result-card">
+
+                    <h3>
+                        Predicted Salary
+                    </h3>
+
+                    <p>
+                        {{ salary if salary else "--" }}
+                    </p>
+
+                </div>
+
+                <div class="result-card">
+
+                    <h3>
+                        Role
+                    </h3>
+
+                    <p>
+                        {{ role if role else "--" }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================= -->
+        <!-- RETENTION ANALYSIS -->
+        <!-- ================================================= -->
+
+        <section id="retention-analysis">
+
+            <h1 style="font-size:28px; margin-bottom:25px;">
+
+                Retention Analysis
+
+            </h1>
+
+            <div class="results-grid">
+
+                <div class="result-card">
+
+                    <h3>
+                        Retention Prediction
+                    </h3>
+
+                    <p>
+                        {{ retention if retention else "--" }}
+                    </p>
+
+                </div>
+
+                <div class="result-card">
+
+                    <h3>
+                        Resume Score
+                    </h3>
+
+                    <p>
+                        {{ resume_score if resume_score else "--" }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================= -->
+        <!-- HR ANALYTICS -->
+        <!-- ================================================= -->
+
+        <section id="hr-analytics">
+
+            <h1 style="font-size:28px; margin-bottom:25px;">
+
+                HR Analytics
+
+            </h1>
+
+            <div class="results-grid">
+
+                <div class="result-card">
+
+                    <h3>
+                        Email
+                    </h3>
+
+                    <p>
+                        {{ email if email else "--" }}
+                    </p>
+
+                </div>
+
+                <div class="result-card">
+
+                    <h3>
+                        Phone
+                    </h3>
+
+                    <p>
+                        {{ phone if phone else "--" }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================= -->
+        <!-- REPORTS -->
+        <!-- ================================================= -->
+
+        <section id="reports">
+
+            <h1 style="font-size:28px; margin-bottom:25px;">
+
+                Reports
+
+            </h1>
+
+            <div class="results-grid">
+
+                <div class="result-card">
+
+                    <h3>
+                        Final AI Decision
+                    </h3>
+
+                    <p>
+
+                        Candidate Suitable for Hiring
+
+                    </p>
+
+                </div>
+
+                <div class="result-card">
+
+                    <h3>
+                        AI Confidence
+                    </h3>
+
+                    <p>
+
+                        95%
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- ================================================= -->
+<!-- JS -->
+<!-- ================================================= -->
+
+<script>
+
+function scrollToSection(sectionId){
+
+    document.getElementById(sectionId)
+            .scrollIntoView({
+                behavior:'smooth'
+            });
+}
+
+</script>
+
+</body>
+
+</html>

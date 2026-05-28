@@ -1,0 +1,9 @@
+Flask
+pymongo
+joblib
+pdfplumber
+scikit-learn
+werkzeug
+gunicorn
+numpy
+pandas
